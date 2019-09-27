@@ -31,14 +31,18 @@ app.layout = html.Div([
         [
         #the first row
         dbc.Row(
-        dbc.Col(html.Div("A single Column"))
+        dbc.Col(html.Div("A single Column")),
         ),
+            
         #the second row
         dbc.Row(
+            [
         dbc.Col(html.Div("The first column")),
-        #dbc.Col(html.Div("The second column")),
-        #dbc.Col(html.Div("The third column")),
+        dbc.Col(html.Div("The second column")),
+        dbc.Col(html.Div("The third column")),
+            ]
         ),
+            
         #the third row
         dbc.Row(
         [
