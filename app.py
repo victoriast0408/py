@@ -1,36 +1,118 @@
 import dash
 import dash_core_components as dcc
 import plotly.graph_objs as go
+import dash_bootstrap_components as dbc
 import dash_html_components as html
 import pandas as pd
 import numpy as np
 
-app=dash.Dash()
+app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+#add excel file
 abcstat = pd.read_excel('abcjan2018bm.xlsx')
+
+# iloc 0:144 excludes the rest of the cells  and make the cell 145 the last one
+trace1 = go.Bar(x=abcstat.Bezeichnung.iloc[0:144], y=abcstat.Betrag)
+
+#app=dash.Dash()
+
+# Boostrap CSS.
+#external_css = ["https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
+             #   "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css", ]
+
+#for css in external_css:
+   # app.css.append_css({"external_url": css})
+
+
 app.layout = html.Div([
     
-    dcc.Graph(
-        id ='scatter_chart',
-        figure = {
-            'data':[
-                go.Bar(
-                x = abcstat.Umsatzgruppe,
-                y = abcstat.Betrag,
+  
+    html.Div(
+        [
+        #the first row
+        dbc.Row(
+        dbc.Col(html.Div("A single Column"))
+        ),
+        #the second row
+        dbc.Row(
+        dbc.Col(html.Div("The first column")),
+        #dbc.Col(html.Div("The second column")),
+        #dbc.Col(html.Div("The third column")),
+        ),
+        #the third row
+        dbc.Row(
+        [
+                dbc.Col(html.Div
+             # the first histogram
+             (dcc.Graph(
+            id ='histogram1',
+            figure = {
+                'data':[
+                    trace1
+                ],
+                'layout': go.Layout(
+                   #title = 'ABC Statistics',
+                   #xaxis = {'title' : 'Umsatzgruppen'},
+                    yaxis = go.layout.YAxis(
+                        tickmode = 'linear',
+                        tick0 = 0,
+                        dtick = 100
+                    ),   
                 )
-            ],
-            'layout': go.Layout(
-                title = 'ABC Statistik',
-                xaxis = {'title' : 'Umsatzgruppen'},
-                yaxis = go.layout.YAxis(
-                    tickmode = 'linear',
-        tick0 = 0,
-        dtick = 80
-    ),
-                height=500
-            )
-        }
-    )
+            }
+        ),   
+               ), width=3
+               ),
+            dbc.Col(html.Div
+             # the second histogram
+             (dcc.Graph(
+            id ='histogram2',
+            figure = {
+                'data':[
+                    trace1
+                ],
+                'layout': go.Layout(
+                   #title = 'ABC Statistics',
+                   #xaxis = {'title' : 'Umsatzgruppen'},
+                    yaxis = go.layout.YAxis(
+                        tickmode = 'linear',
+                        tick0 = 0,
+                        dtick = 100
+                    ),   
+                )
+            }
+        ),   
+               )
+               ),
+            #dbc.Col(html.Div("One of the three column")),
+        ]
+        ),
+            
+            
+            
+         #the fourth row
+    ]),
+    
+    
+    
+    
+    
+    
+    
+    
 ])
+       
+    
+      
+        
+        
+        
+        
+        
+        
+        
+        
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
