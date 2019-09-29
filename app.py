@@ -85,7 +85,7 @@ app.layout = html.Div([
                     yaxis = go.layout.YAxis(
                         tickmode = 'linear',
                         tick0 = 0,
-                        dtick = 100
+                        dtick = 100,
                     ),   
                 )
             }
