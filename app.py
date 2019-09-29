@@ -12,7 +12,11 @@ app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 abcstat = pd.read_excel('abcjan2018bm.xlsx')
 
 # iloc 0:144 excludes the rest of the cells  and make the cell 145 the last one
-trace1 = go.Bar(x=abcstat.Bezeichnung.iloc[0:144], y=abcstat.Betrag)
+trace1 = go.Bar(x=abcstat.bezeichnung.iloc[0:144], y=abcstat.betrag)
+labels = abcstat.umsatzgruppe
+values = abcstat.betrag
+
+
 
 #app=dash.Dash()
 
@@ -89,28 +93,33 @@ app.layout = html.Div([
                )
                ),
             #dbc.Col(html.Div("One of the three column")),
-        ]
-        ),
-            
-            
-            
-         #the fourth row
-    ]),
-    
-    
-    
-    
-    
-    
-    
-    
-])
+        ]),
+            # the fourth row
+            dbc.Row(
+
+                    dbc.Col(html.Div
+                    # the third - chart
+                        (dcc.Graph(
+                        id='chart1',
+                        # Use `hole` to create a donut-like pie chart
+                        figure=go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
+                            )
+      ),
+    ),
+)
+
+
+
+
+
        
+
+            
+            
+        ])
+])
+        
     
-      
-        
-        
-        
         
         
         
