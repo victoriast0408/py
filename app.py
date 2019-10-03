@@ -33,93 +33,137 @@ app.layout = html.Div([
   
     html.Div(
         [
-        #the first row
-        dbc.Row(
-        dbc.Col(html.Div("A single Column")),
-        ),
+        #the first row: title, navigation, logo
+        dbc.Row([
+        dbc.Col(html.Div("Bakery Title")),
+        dbc.Col(html.Div(
+            dbc.Nav(
+            [
+               dbc.NavItem(dbc.NavLink("Active", active=True, href="http://google.com")),
+               dbc.NavItem(dbc.NavLink("Another Link", href="#")),
+               dbc.NavItem(dbc.NavLink("Other Link", href="#")),
+               dbc.NavItem(dbc.NavLink("Disabled Link", disabled=True, href="#")),
+            ], pills=True,)
+        )),
+        dbc.Col(html.Div("Logo"), width=2),
+        ]),
             
-        #the second row
+        #the second row: data in numbers
         dbc.Row(
             [
-        dbc.Col(html.Div("The first column")),
-        dbc.Col(html.Div("The second column")),
-        dbc.Col(html.Div("The third column")),
+        dbc.Col(html.Div(
+            dbc.Card(
+            dbc.CardBody(
+            [
+                html.H6("Monthly Income"),
+                html.H4("CHF 34598.60"),
+                dbc.CardLink("Link")
+            ]
+            )
+        ))),
+         dbc.Col(html.Div(
+            dbc.Card(
+            dbc.CardBody(
+            [
+                html.H6("Monthly Income"),
+                html.H4("CHF 34598.60"),
+                dbc.CardLink("Link")
+            ]
+            )
+        ))),        
+         dbc.Col(html.Div(
+            dbc.Card(
+            dbc.CardBody(
+            [
+                html.H6("Monthly Income"),
+                html.H4("CHF 34598.60"),
+                dbc.CardLink("Link")
+            ]
+            )
+        ))),
+         dbc.Col(html.Div(
+            dbc.Card(
+            dbc.CardBody(
+            [
+                html.H6("Monthly Income"),
+                html.H4("CHF 34598.60"),
+                dbc.CardLink("Link")
+            ]
+            ),
+        ))),
+         dbc.Col(html.Div(
+            dbc.Card(
+            dbc.CardBody(
+            [
+                html.H6("Monthly Income"),
+                html.H4("CHF 34598.60"),
+                dbc.CardLink("Link")
+            ]
+            )
+        ))),
             ]
         ),
             
-        #the third row
+        #the third row: 2 graphs
         dbc.Row(
-        [
-                dbc.Col(html.Div
-             # the first histogram
-             (dcc.Graph(
-            id ='histogram1',
-            figure = {
-                'data':[
-                    trace1
-                ],
-                'layout': go.Layout(
-                   #title = 'ABC Statistics',
-                   #xaxis = {'title' : 'Umsatzgruppen'},
-                    yaxis = go.layout.YAxis(
-                        tickmode = 'linear',
-                        tick0 = 0,
-                        dtick = 100
-                    ),   
-                )
-            }
-        ),   
-               ), width=3
-               ),
-            dbc.Col(html.Div
-             # the second histogram
-             (dcc.Graph(
-            id ='histogram2',
-            figure = {
-                'data':[
-                    trace1
-                ],
-                'layout': go.Layout(
-                   #title = 'ABC Statistics',
-                   #xaxis = {'title' : 'Umsatzgruppen'},
-                    yaxis = go.layout.YAxis(
-                        tickmode = 'linear',
-                        tick0 = 0,
-                        dtick = 100,
-                    ),   
-                )
-            }
-        ),   
-               )
-               ),
-            #dbc.Col(html.Div("One of the three column")),
-        ]),
-            # the fourth row
+            [
+       dbc.Col(html.Div
+                       (dcc.Graph(
+                       id='graph1',
+                       ))
+                       ),
+      dbc.Col(html.Div
+                       (dcc.Graph(
+                       id='graph2',
+                       ))
+                       ),
+            ]),
+            
+            
+            # the fourth row: 2 graphs
             dbc.Row(
-
-                    dbc.Col(html.Div
-                    # the third - chart
+                [
+                  dbc.Col(html.Div
+                    # the second graph
                         (dcc.Graph(
-                        id='chart1',
-                        # Use `hole` to create a donut-like pie chart
-                        figure=go.Figure(data=[go.Pie(labels=labels, values=values, hole=.3)])
-                            )
-      ),
-    ),
-)
-
-
-
-
-
-       
-
+                        id='graph3',
+                        ))     
+            ),
+                dbc.Col(html.Div
+                    # the second graph
+                        (dcc.Graph(
+                        id='graph4',
+                        ))     
+            ),
+            ]),
             
-            
-        ])
+            # the fifth row: 2 graphs
+            dbc.Row(
+            [
+                dbc.Col(html.Div
+                       (dcc.Graph(
+                       id='graph5',
+                       ))
+                       ),
+                dbc.Col(html.Div
+                        (dcc.Graph(
+                        id='graph6',
+                        ))
+                ),
+                dbc.Col(html.Div
+                        (dcc.Graph(
+                        id='graph7',
+                        ))
+                )
+                
+            ]),
+
+        
+        
+        
 ])
         
-    
+], className="container-fluid")
         
         
         
